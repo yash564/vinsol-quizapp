@@ -1,0 +1,60 @@
+.card{
+    height: 30vh;
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height:50%; */
+}
+
+.content{
+    font-size: 15px;
+    font-weight: bold;
+    display: inline;
+}
+
+.score{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.answer-container{
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+}
+
+.progress-bar{
+    width: 0%;
+    height: 5px;
+}
+
+.progress-bar.active{
+    animation: progress 10s linear;
+}
+
+@keyframes progress{
+    0%{
+        width:0%;
+        background: #555;
+    }
+    79%{
+        width: 79%;
+        background: #555;
+    }
+    80%{
+        width: 80%;
+        background: orangered;
+    }
+    100%{
+        width: 100%;
+        background: orangered;
+    }
+}
