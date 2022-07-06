@@ -39,15 +39,15 @@ const Quiz = () => {
     setQuestions(questionList);
   };
 
-  useEffect(()=>{
-    if(questions.length>0){
+  useEffect(() => {
+    if (questions.length > 0) {
       progressBar.current.classList.remove("active");
-      setTimeout(()=>{
-          progressBar.current.classList.add("active");
-      },0);
-      timer.current = setTimeout(handleNextQuestion,10*1000);
+      setTimeout(() => {
+        progressBar.current.classList.add("active");
+      }, 0);
+      timer.current = setTimeout(handleNextQuestion, 10 * 1000);
     }
-  },[question]);
+  }, [question]);
 
   const handleSubmit = () => {
     setQuizScreen("Show Answers");
@@ -131,7 +131,13 @@ const Quiz = () => {
             />
           )}
         </div>
-        <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div className="score">Score-{totalScore}</div>
           <PrimaryButton
             value="Reset Quiz"
@@ -195,10 +201,8 @@ const Quiz = () => {
   };
 
   return (
-    <div
-      className="container"
-    >
-      <Card style={{margin:"100px"}}>
+    <div className="container">
+      <Card style={{ margin: "100px" }}>
         <CardContent>
           <div className="progress-bar" ref={progressBar} />
           <Typography variant="h5" style={{ textAlign: "center" }}>
