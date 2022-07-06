@@ -72,6 +72,10 @@ const Quiz = () => {
     };
 
     const handleResetQuiz = () => {
+      progressBar.current.classList.remove("active");
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       setQuizScreen("Start Quiz");
       setQuestions([]);
       setAnswers([]);
@@ -82,12 +86,8 @@ const Quiz = () => {
     return (
       <div>
         <div style={{ display: "flex" }}>
-          <div className="content">Ques-{`${count}: `}</div>
-          <div
-            style={{ display: "inline", marginLeft: "2px", fontSize: "15px" }}
-          >
-            {question}
-          </div>
+          <div className="count">Ques-{`${count}:`}</div>
+          <div className="question">{question}</div>
         </div>
         <div className="answer-container">Ans-{`${count}:`}</div>
         <div style={{ margin: "4% 0px" }}>
@@ -99,13 +99,7 @@ const Quiz = () => {
             onChange={handleChange}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "8px",
-          }}
-        >
+        <div className="button-container">
           <PrimaryButton
             value="Submit Ans"
             handler={handleSubmitQuestion}
@@ -131,13 +125,7 @@ const Quiz = () => {
             />
           )}
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div className="score-container">
           <div className="score">Score-{totalScore}</div>
           <PrimaryButton
             value="Reset Quiz"
@@ -152,7 +140,12 @@ const Quiz = () => {
   };
 
   const Solution = () => {
+
     const handleScoreCard = () => {
+      progressBar.current.classList.remove("active");
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       setQuizScreen("Start Quiz");
       setQuestions([]);
       setAnswers([]);
@@ -160,15 +153,24 @@ const Quiz = () => {
       setTotalScore(0);
     };
 
+    useEffect(()=>{
+      progressBar.current.classList.remove("active");
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+    },[])
+
     return (
       <div>
-        Score: {totalScore} out of {questions.length}
-        <Table>
+        <div>
+          Score: {totalScore} out of {questions.length}
+        </div>
+        <Table style={{marginBottom:"5px"}}>
           <TableHead>
             <TableRow>
-              <TableCell>Question</TableCell>
-              <TableCell>Given Answer</TableCell>
-              <TableCell>Correct Answer</TableCell>
+              <TableCell className="table-cell">Question</TableCell>
+              <TableCell className="table-cell">Given Answer</TableCell>
+              <TableCell className="table-cell">Correct Answer</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -182,9 +184,9 @@ const Quiz = () => {
                 }}
                 key={index}
               >
-                <TableCell>{question}</TableCell>
-                <TableCell>{answers[index]}</TableCell>
-                <TableCell>{expectedAnswers[index]}</TableCell>
+                <TableCell className="table-cell">{question}</TableCell>
+                <TableCell className="table-cell">{answers[index]}</TableCell>
+                <TableCell className="table-cell">{expectedAnswers[index]}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -214,6 +216,7 @@ const Quiz = () => {
                   handler={handleNextQuestion}
                   type="contained"
                   color="primary"
+                  size="small"
                 />
               </>
             )}

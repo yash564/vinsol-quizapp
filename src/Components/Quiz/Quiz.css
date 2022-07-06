@@ -13,10 +13,22 @@
     /* height:50%; */
 }
 
-.content{
+.count{
     font-size: 15px;
     font-weight: bold;
     display: inline;
+}
+
+.question{
+    display: inline;
+    margin-left: 2px; 
+    font-size: 15px;
+}
+
+.score-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .score{
@@ -29,6 +41,16 @@
     font-weight: bold;
     display: block;
     text-align: left;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.table-cell{
+    text-align: center !important;
 }
 
 .progress-bar{
